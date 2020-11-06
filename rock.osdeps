@@ -75,8 +75,11 @@ rice:
         - ruby-dev
 
 qwt5:
-    debian,ubuntu: libqwt5-qt4-dev
+    debian,ubuntu:
+        default: libqwt5-qt4-dev
+        '20.04': nonexistent
     fedora,opensuse: qwt-devel
+    darwin: qwt
     arch: qwt5
     macos-port: qwt
     gentoo: x11-libs/qwt
@@ -199,7 +202,7 @@ thor:
 qtruby:
     default:
         gem: qtbindings
-        osdep: [qt4, qt4-opengl, qt-designer, qt4-webkit, ruby-dev]
+        osdep: [qt4, qt4-opengl, qt-designer, qt4-webkit, ruby-dev, cmake]
     gentoo:
         kde-base/kdebindings-ruby
 
@@ -272,7 +275,9 @@ python-pexpect:
     opensuse: python-pexpect
 
 python-msgpack:
-    debian,ubuntu: python-msgpack
+    debian,ubuntu:
+        "16.04,18.04,18.10,19.04,19.10": python-msgpack
+        default: nonexistent
     opensuse: python-msgpack
 
 python3:
@@ -294,6 +299,14 @@ python3-pexpect:
 python3-msgpack:
     debian,ubuntu: python3-msgpack
     opensuse: python3-msgpack
+
+python3-distutils:
+    debian,ubuntu: python3-distutils
+    opensuse: python3-distutils-extra
+
+python3-setuptools:
+    debian,ubuntu: python3-setuptools
+    opensuse: python3-setuptools
 
 cython3:
     debian, ubuntu: cython3
@@ -328,5 +341,8 @@ gem2deb:
 qemu:
     debian,ubuntu: [qemu-user-static, qemubuilder]
 
-rubocop: gem
+rubocop:
+    gem:
+        - rubocop=0.83.0
 rubocop-rock: gem
+ruby2_keywords: gem
